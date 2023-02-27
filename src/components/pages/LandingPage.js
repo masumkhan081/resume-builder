@@ -8,7 +8,10 @@ export default function PageLanding() {
         <span href="" className="text-success h5">
           Go Routes
         </span>
-        <a href="/login" className="text-decoration-none ">
+        <a
+          href="https://verdant-entremet-0f77ac.netlify.app/login"
+          className="text-decoration-none "
+        >
           Login Page
         </a>
         <a href="/profile" className="text-decoration-none ">

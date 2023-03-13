@@ -2,7 +2,6 @@ import React from "react";
 import { useNavigate, Navigate } from "react-router-dom";
 import { db } from "../../components/utils/firb";
 import { updateDoc, doc, setDoc, getDoc } from "firebase/firestore";
-import PageLogin from "./LoginPage";
 import ImageTitle from "../partials/ImageTitle";
 import BasicInfo from "../partials/BasicInfo";
 import TechSkills from "../partials/TechSkills";
@@ -13,7 +12,7 @@ import Loader from "../partials/Loader";
 export const page1Context = React.createContext();
 //
 export default function Page1() {
-  const { user,setTheUser, loading } = React.useContext(authContext);
+  const { user, setTheUser, loading } = React.useContext(authContext);
   const navigate = useNavigate();
   const [page1Error, setPage1Error] = React.useState("");
   const [busy, setBusy] = React.useState(false);
@@ -140,39 +139,54 @@ export default function Page1() {
     //  console.log(JSON.stringify(nextState) + "  = in update state ?-yes");
     setState({ ...state, ...nextState });
   }
-  function setTestData() {
-    setState({
-      ...state,
-      ...{
-        title: "full stack-developer",
-        email: "masumkhan081@gmail.com",
-        emailVerified: false,
-        displayName: "Masum Khan",
-        dob: "",
-        fullName: "Abdullah-Al Masum Khan",
-        address: "Rd-6, Khadim",
-        github: "github.com/masumkhan081",
-        linkedin: "linkedin.in/masumkhan081",
-        portfolio: "github.com/masumkhan081",
-        photoSource:
-          "https://media.licdn.com/dms/image/C5603AQGVhTn0cvkcRw/profile-displayphoto-shrink_800_800/0/1661930138028?e=2147483647&v=beta&t=eOwHOZQG1XdsGw2u5S0BP_xb438QudkAgTj33ttcShQ",
-        phoneNumber: "01833-347848",
-        title: "Full stack developer",
-        frontEndSkills: [
-          ...state.frontEndSkills,
-          "react",
-          "bootstrap",
-          "react-bootstrap",
-          "material-ui",
-          "react-icons",
-          "recharts",
-          "tailwindCSS",
-        ],
-        backEndSkills: [...state.backEndSkills, "Express"],
-        dataTierSkills: [...state.dataTierSkills, "MongoDB"],
-        personalSkills: [...state.personalSkills, "Problem Solving"],
-      },
-    });
+  function setTestData(action) {
+    action == "reset"
+      ? setState({
+          email: "", //user.signInEmail,
+          displayName: user.profileName,
+          dob: "",
+          fullName: "",
+          address: "",
+          github: "github.com/",
+          linkedin: "linkedin.com/in/",
+          portfolio: "",
+          emailVerified: false,
+          photoSource: "", //user.photoURL,
+          phoneNumber: "",
+          title: "",
+          frontEndSkills: [],
+          backEndSkills: [],
+          dataTierSkills: [],
+          personalSkills: [],
+        })
+      : setState({
+          title: "full stack-developer",
+          email: "masumkhan081@gmail.com",
+          emailVerified: false,
+          displayName: "Masum Khan",
+          dob: "",
+          fullName: "Abdullah-Al Masum Khan",
+          address: "Rd-6, Khadim",
+          github: "github.com/masumkhan081",
+          linkedin: "linkedin.in/masumkhan081",
+          portfolio: "github.com/masumkhan081",
+          photoSource:
+            "https://media.licdn.com/dms/image/C5603AQGVhTn0cvkcRw/profile-displayphoto-shrink_800_800/0/1661930138028?e=2147483647&v=beta&t=eOwHOZQG1XdsGw2u5S0BP_xb438QudkAgTj33ttcShQ",
+          phoneNumber: "01833-347848",
+          title: "Full stack developer",
+          frontEndSkills: [
+            "react",
+            "bootstrap",
+            "react-bootstrap",
+            "material-ui",
+            "react-icons",
+            "recharts",
+            "tailwindCSS",
+          ],
+          backEndSkills: ["Express"],
+          dataTierSkills: ["MongoDB"],
+          personalSkills: ["Problem Solving"],
+        });
   }
 
   function removeFrontndSkill(skillName) {

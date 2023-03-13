@@ -154,7 +154,7 @@ export default function Page3() {
           <NextPrevious
             error={page3Error}
             prev={`/profile/page2`}
-            nextText={"Save"}
+            nextText={"Save & Next"}
             saveAndNext={savePage3}
             setTestData={setTestData}
           />

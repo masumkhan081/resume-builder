@@ -1,49 +1,39 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import { FcReading } from "react-icons/fc";
+import { FcList } from "react-icons/fc";
 
 export default function PageLanding() {
   return (
-    <div className="row px-4 pt-5">
+    <div className="row px-5 pt-5">
       {/* --start col-1 */}
-      <div className="col-md-4 d-flex flex-column gap-2">
-        <span href="" className="text-success h5">
+      <div className="col-md-4 ">
+        <span className="text-success h5 d-block text-center mb-3">
           Go Routes
+          <FcList size={20} className="mb-1 ms-1" />
         </span>
-        <a
-          href="https://verdant-entremet-0f77ac.netlify.app/login"
-          className="text-decoration-none "
-        >
-          Login Page
-        </a>
-        <a href="/profile" className="text-decoration-none ">
-          Profile Page
-        </a>
-        <a href="/profile/page1" className="text-decoration-none  ">
-          Page 1
-        </a>
-        <a href="/profile/page2" className="text-decoration-none  ">
-          Page 2
-        </a>
-        <a href="/profile/page3" className="text-decoration-none ">
-          Page 3
-        </a>
-        <a href="/profile/myresume" className="text-decoration-none  ">
-          View resume
-        </a>
-        <a href="/profile/myresume-pdf " className="text-decoration-none  ">
-          PDF
-        </a>
+
+        <QuickLinks />
 
         {/* --end of col-1 */}
       </div>
       {/* --start col-2   */}
-      <div className="col-md-7 border-1 border-start border-success rounded-3">
-        <ul className=" rounded d-flex text-start ps-4 flex-column align-content-between list-unstyled ">
-          <li className="rounded text-center text-success pb-1 ">
-            <i className="fas fa-hand-point-right h5 "></i>
-            <strong className="h5 "> Read Me</strong>
+      <div className="col-md-8 ">
+        <span className="text-success h5 d-block text-center mb-3">
+          Read Me
+          <FcReading size={22} className="mb-1 ms-1" />
+        </span>
+        <ul className=" rounded d-flex text-start ps-3 flex-column gap-2 list-unstyled ">
+          <li className=" ">
+            <strong className="bg-light rounded px-1">Features: </strong>
           </li>
           <li className="rounded ">
-            <strong>Features: </strong>
+            Register, Login, Protected routes based on Json Web Token,
+            Add-Edit-Delete-Check existence of data, Ensuring other data
+            associated or not at deletion, Tabular view
+          </li>
+          <li className=" ">
+            <strong className="bg-light rounded px-1">Implemented: </strong>
           </li>
           <li className="rounded ">
             Register, Login, Protected routes based on Json Web Token,
@@ -54,6 +44,71 @@ export default function PageLanding() {
         {/* --end col-2 */}
       </div>
       {/* --end row */}
+    </div>
+  );
+}
+function QuickLinks() {
+  const navigate = useNavigate();
+  const clsNames =
+    "border-0 text-start text-primary rounded bg-success bg-opacity-10";
+  return (
+    <div className="d-flex flex-column gap-2">
+      <button
+        onClick={() => {
+          navigate("/login");
+        }}
+        className={clsNames}
+      >
+        Log in
+      </button>
+      <button
+        onClick={() => {
+          navigate("/profile");
+        }}
+        className={clsNames}
+      >
+        Profile Page
+      </button>
+      <button
+        onClick={() => {
+          navigate("/profile/page1");
+        }}
+        className={clsNames}
+      >
+        Page1
+      </button>
+      <button
+        onClick={() => {
+          navigate("/profile/page2");
+        }}
+        className={clsNames}
+      >
+        Page2
+      </button>
+      <button
+        onClick={() => {
+          navigate("/profile/page3");
+        }}
+        className={clsNames}
+      >
+        Page3
+      </button>
+      <button
+        onClick={() => {
+          navigate("/profile/myresume");
+        }}
+        className={clsNames}
+      >
+        View Resume
+      </button>
+      <button
+        onClick={() => {
+          navigate("/profile/myresume-pdf");
+        }}
+        className={clsNames}
+      >
+        PDF
+      </button>
     </div>
   );
 }

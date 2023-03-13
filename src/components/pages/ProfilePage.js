@@ -63,7 +63,7 @@ export default function PageProfile() {
   }
   if (user.loggedIn == true && loading == false) {
     return (
-      <div className=" mx-5 mt-3 rounded-3 shadow-sm">
+      <div className=" mx-5 mt-4 rounded-3 shadow-sm">
         <Form className="py-2 ps-3 gap-2">
           <Form.Group className="mb-2 d-flex flex-row justify-content-between">
             <div>
@@ -207,11 +207,8 @@ export default function PageProfile() {
           >
             Save Update
           </Button>
-
           <span className="ms-2 w-50 text-danger fw-bold">{error}</span>
         </Form>
-        <span>{JSON.stringify(error)}</span>
-        <br />
       </div>
     );
   }

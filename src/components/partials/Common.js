@@ -1,8 +1,10 @@
 import { Badge, Form, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { BiListPlus } from "react-icons/bi";
 import { GrClose } from "react-icons/gr";
 import { GiOfficeChair } from "react-icons/gi";
+import { MdDeveloperMode } from "react-icons/md";
+import { BsArrowLeftCircle, BsArrowRightCircle } from "react-icons/bs";
 import { FaUniversity } from "react-icons/fa";
 //
 
@@ -31,36 +33,50 @@ export function NextPrevious({
   saveAndNext,
   setTestData,
 }) {
+  const navigate = useNavigate();
+
   return (
     <div className="px-4 container-fluid mb-3 d-flex justify-content-between ">
       <div className="d-flex justify-content-between gap-4">
-        {prev && <Link to={prev}>Previous</Link>}
-        <Dummy setTestData={setTestData} />
+        {prev && (
+          <Button
+            disabled={busy}
+            onClick={() => navigate(prev)}
+            className="btn btn-sm border-0 py-0 px-1 bg-success bg-opacity-25 text-dark fw-bold rounded-3"
+          >
+            <BsArrowLeftCircle size={15} className="mb-1 me-1" />
+            Prev
+          </Button>
+        )}
+        <Dummy setData={() => setTestData("whatev")} btnText="Test Data" />
+        <Dummy setData={() => setTestData("reset")} btnText="Reset" />
       </div>
       {error && <span className="fw-bold">{error}</span>}
       <div className="d-flex gap-3">
-        <span>{JSON.stringify(busy)}</span>
         {saveAndNext && (
           <Button
-            style={{
-              height: "25px",
-              fontSize: "12px",
-              backgroundColor: "DarkSlateGray",
-            }}
             disabled={busy}
             onClick={saveAndNext}
-            className="btn-link border-0 py-0 px-1 my-0 btn bg-light bg-opacity-50 fw-bold rounded-3 "
+            className="btn btn-sm border-0 py-0 px-1 bg-success bg-opacity-25 text-dark fw-bold rounded-3"
           >
             {nextText}
           </Button>
         )}
-        {next && <Link to={next}>Next</Link>}
+        {next && (
+          <Button
+            disabled={busy}
+            onClick={() => navigate(next)}
+            className="btn btn-sm border-0 py-0 px-1 bg-success bg-opacity-25 text-dark fw-bold rounded-3"
+          >
+            Next <BsArrowRightCircle size={15} className="mb-1" />
+          </Button>
+        )}
       </div>
     </div>
   );
 }
 
-function Dummy({ setTestData }) {
+function Dummy({ setData, btnText }) {
   return (
     <Button
       style={{
@@ -68,10 +84,10 @@ function Dummy({ setTestData }) {
         fontSize: "13px",
         // backgroundColor: "DarkSlateGray",
       }}
-      className="border-0 py-0 my-0 btn rounded-3 bg-light bg-opacity-75 text-black-50"
-      onClick={setTestData}
+      className="border-0 py-0 my-0 btn rounded-3 bg-success bg-opacity-25  text-black-50"
+      onClick={setData}
     >
-      Set Dummy Data
+      {btnText}
     </Button>
   );
 }
@@ -81,9 +97,12 @@ export function PanelAbout({ title, about }) {
     <div>
       <Badge
         text="dark"
-        className="text-center bg-success bg-opacity-50 d-block py-0 "
+        className="text-center bg-success bg-opacity-10 d-block py-0 "
       >
-        {about == "hobbies" && <BiListPlus size={20} className=" mx-2" />}
+        {about == "projects" && (
+          <MdDeveloperMode size={18} className=" me-1 mb-1" />
+        )}
+        {about == "hobbies" && <BiListPlus size={21} className=" me-1 mb-0" />}
         {about == "education" && (
           <FaUniversity size={19} className=" mb-1 me-1" />
         )}

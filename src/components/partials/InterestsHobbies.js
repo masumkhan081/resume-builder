@@ -19,7 +19,7 @@ export default function InterestsHobbies() {
   return (
     <div className="col-md-5 rounded-3">
       {/* panel header */}
-      <PanelAbout title="Enlist your hobbies & interests" about="hobby" />
+      <PanelAbout title="Enlist your hobbies & interests" about="hobbies" />
       {/* getting hobbies */}
       <div className="mt-4">
         <EnhancedTitle

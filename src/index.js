@@ -15,6 +15,22 @@ import PDF from "./components/pages/PDF";
 //
 const router = createBrowserRouter([
   {
+    path: "https://sparkly-gecko-2b92e5.netlify.app/login",
+    element: <div>https://sparkly-gecko-2b92e5.netlify.app/login</div>,
+  },
+  {
+    path: "sparkly-gecko-2b92e5.netlify.app/login",
+    element: <div>sparkly-gecko-2b92e5.netlify.app/login</div>,
+  },
+  {
+    path: "sparkly-gecko-2b92e5.netlify.app/",
+    element: <div>sparkly-gecko-2b92e5.netlify.app</div>,
+  },
+  {
+    path: "/login",
+    element: <div>/login</div>,
+  },
+  {
     path: "/",
     element: (
       <>
@@ -28,24 +44,6 @@ const router = createBrowserRouter([
         path: "",
         //element: <PageControl reqPage={1} />, //<PageProfile />,
         element: <PageLanding />,
-      },
-      {
-        path: "https://sparkly-gecko-2b92e5.netlify.app/",
-        //element: <PageControl reqPage={1} />, //<PageProfile />,
-        element: (
-          <div>
-            <h1>Hello page landing !!!!</h1>
-          </div>
-        ),
-      },
-      {
-        path: "https://sparkly-gecko-2b92e5.netlify.app/login",
-        //element: <PageControl reqPage={1} />, //<PageProfile />,
-        element: (
-          <div>
-            <h1>Hello page landing !!!!</h1>
-          </div>
-        ),
       },
       {
         path: "/login",

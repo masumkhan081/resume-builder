@@ -4,18 +4,15 @@ import { FcGoogle } from "react-icons/fc";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { auth } from "../utils/firb";
 import { authContext } from "../../context/Provider";
-//
-const navigate = useNavigate();
 
 export default function Googgle() {
   //
-
+  const navigate = useNavigate();
   const { setTheUser, setTheError } = useContext(authContext);
   //
   const googleProvider = new GoogleAuthProvider();
   //
-
-  function login() {
+  const login = () => {
     signInWithPopup(auth, googleProvider)
       .then((result) => {
         let extracted = {
@@ -31,7 +28,7 @@ export default function Googgle() {
         addProfile(obtained);
         setTheUser(obtained);
 
-        redirect("/profile");
+        // redirect("/profile");
         navigate("/profile");
         //
         //<Navigate to="/profile" replace={true} />;
@@ -43,12 +40,12 @@ export default function Googgle() {
           setTheError(theError.customData._tokenResponse.verifiedProvider[0]);
         }
       });
-  }
+  };
 
   return (
     <>
       <button
-        onClick={() => login()}
+        onClick={login}
         className="w-75 bg-success bg-opacity-10 shadow rounded-3 btn btn btn-sm"
       >
         <FcGoogle size={16} className="mb-1 me-1" /> Google

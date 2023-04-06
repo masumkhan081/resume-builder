@@ -27,9 +27,9 @@ export default function Googgle() {
           phoneNumber: result.user.providerData[0].phoneNumber,
         };
         //addProfile(obtained);
-        setTheUser(obtained);
+        //setTheUser(obtained);
         <Navigate to="/profile" replace={true} />;
-        //navigate("/profile");
+        navigate("profile");
       })
       .catch((theError) => {
         if (theError.code == "auth/account-exists-with-different-credential") {

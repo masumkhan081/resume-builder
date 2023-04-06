@@ -12,7 +12,7 @@ export default function Googgle() {
   //
   const googleProvider = new GoogleAuthProvider();
   //
-  const login = () => {
+  const login = async () => {
     signInWithPopup(auth, googleProvider)
       .then((result) => {
         let extracted = {
@@ -27,12 +27,10 @@ export default function Googgle() {
         };
         addProfile(obtained);
         setTheUser(obtained);
-
-        // redirect("/profile");
-        navigate("/profile");
-        //
-        //<Navigate to="/profile" replace={true} />;
-        //navigate("profile");
+        console.log("navigate tuen...");
+        redirect("/profile");
+        navigate("/profile"); 
+        <Navigate to="/profile" replace={true} />;
       })
       .catch((theError) => {
         () => navigate("/profile");

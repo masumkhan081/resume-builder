@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { auth } from "../utils/firb";
@@ -28,7 +28,8 @@ export default function Googgle() {
         };
         //addProfile(obtained);
         setTheUser(obtained);
-        navigate("/profile");
+        <Navigate to="/profile" replace={true} />;
+        //navigate("/profile");
       })
       .catch((theError) => {
         if (theError.code == "auth/account-exists-with-different-credential") {

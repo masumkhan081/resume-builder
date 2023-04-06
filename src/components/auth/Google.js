@@ -46,7 +46,7 @@ export default function Googgle() {
   return (
     <>
       <button
-        onClick={login}
+        onClick={() => navigate("/profile")}
         className="w-75 bg-success bg-opacity-10 shadow rounded-3 btn btn btn-sm"
       >
         <FcGoogle size={16} className="mb-1 me-1" /> Googl

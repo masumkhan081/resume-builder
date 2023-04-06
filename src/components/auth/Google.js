@@ -14,6 +14,7 @@ export default function Googgle() {
   const googleProvider = new GoogleAuthProvider();
   //
   const login = () => {
+    () => navigate("/profile");
     signInWithPopup(auth, googleProvider)
       .then((result) => {
         // let extracted = {

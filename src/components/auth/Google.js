@@ -28,7 +28,8 @@ export default function Googgle() {
         };
         //addProfile(obtained);
         //setTheUser(obtained);
-        redirect("/profile");
+        navigate("/");
+        //redirect("/profile");
         //<Navigate to="/profile" replace={true} />;
         //navigate("profile");
       })
@@ -45,7 +46,7 @@ export default function Googgle() {
         onClick={login}
         className="w-75 bg-success bg-opacity-10 shadow rounded-3 btn btn btn-sm"
       >
-        <FcGoogle size={16} className="mb-1 me-1" /> Google
+        <FcGoogle size={16} className="mb-1 me-1" /> Googleee
       </button>
     </>
   );

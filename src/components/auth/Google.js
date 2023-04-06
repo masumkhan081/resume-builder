@@ -5,32 +5,34 @@ import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { auth } from "../utils/firb";
 import { authContext } from "../../context/Provider";
 //
+const navigate = useNavigate();
 
 export default function Googgle() {
   //
-  const navigate = useNavigate();
+
   const { setTheUser, setTheError } = useContext(authContext);
   //
   const googleProvider = new GoogleAuthProvider();
   //
-  const login = () => {
-    () => navigate("/profile");
+
+  function login() {
     signInWithPopup(auth, googleProvider)
       .then((result) => {
-        // let extracted = {
-        //   uid: result.user.uid,
-        //   loggedIn: true,
-        //   signInEmail: result.user.email,
-        //   profileName: result.user.displayName,
-        //   emailVerified: result.user.emailVerified,
-        //   photoURL: result.user.photoURL,
-        //   providerId: result.user.providerData[0].providerId,
-        //   phoneNumber: result.user.providerData[0].phoneNumber,
-        // };
-        //addProfile(obtained);
-        //setTheUser(obtained);
-        () => navigate("/profile");
-        () => redirect("/profile");
+        let extracted = {
+          uid: result.user.uid,
+          loggedIn: true,
+          signInEmail: result.user.email,
+          profileName: result.user.displayName,
+          emailVerified: result.user.emailVerified,
+          photoURL: result.user.photoURL,
+          providerId: result.user.providerData[0].providerId,
+          phoneNumber: result.user.providerData[0].phoneNumber,
+        };
+        addProfile(obtained);
+        setTheUser(obtained);
+
+        redirect("/profile");
+        navigate("/profile");
         //
         //<Navigate to="/profile" replace={true} />;
         //navigate("profile");
@@ -41,15 +43,15 @@ export default function Googgle() {
           setTheError(theError.customData._tokenResponse.verifiedProvider[0]);
         }
       });
-  };
+  }
 
   return (
     <>
       <button
-        onClick={() => navigate("/profile")}
+        onClick={() => login()}
         className="w-75 bg-success bg-opacity-10 shadow rounded-3 btn btn btn-sm"
       >
-        <FcGoogle size={16} className="mb-1 me-1" /> Googl
+        <FcGoogle size={16} className="mb-1 me-1" /> Google
       </button>
     </>
   );

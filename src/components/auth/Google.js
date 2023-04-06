@@ -29,7 +29,7 @@ export default function Googgle() {
         //addProfile(obtained);
         //setTheUser(obtained);
         () => navigate("/profile");
-        //) => redirect("/profile");
+        () => redirect("/profile");
         //
         //<Navigate to="/profile" replace={true} />;
         //navigate("profile");

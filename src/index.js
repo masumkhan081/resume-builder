@@ -27,7 +27,7 @@ const router = createBrowserRouter([
     element: <div>sparkly-gecko-2b92e5.netlify.app</div>,
   },
   {
-    path: "/login",
+    path: "/logi",
     element: <div>/login</div>,
   },
   {

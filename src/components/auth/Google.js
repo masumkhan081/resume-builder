@@ -13,28 +13,29 @@ export default function Googgle() {
   //
   const googleProvider = new GoogleAuthProvider();
   //
-  const login = async () => {
+  const login = () => {
     signInWithPopup(auth, googleProvider)
       .then((result) => {
-        let extracted = {
-          uid: result.user.uid,
-          loggedIn: true,
-          signInEmail: result.user.email,
-          profileName: result.user.displayName,
-          emailVerified: result.user.emailVerified,
-          photoURL: result.user.photoURL,
-          providerId: result.user.providerData[0].providerId,
-          phoneNumber: result.user.providerData[0].phoneNumber,
-        };
+        // let extracted = {
+        //   uid: result.user.uid,
+        //   loggedIn: true,
+        //   signInEmail: result.user.email,
+        //   profileName: result.user.displayName,
+        //   emailVerified: result.user.emailVerified,
+        //   photoURL: result.user.photoURL,
+        //   providerId: result.user.providerData[0].providerId,
+        //   phoneNumber: result.user.providerData[0].phoneNumber,
+        // };
         //addProfile(obtained);
         //setTheUser(obtained);
-        () => navigate("/");
-        () => redirect("/profile");
+        () => navigate("profile");
+        //) => redirect("/profile");
         //
         //<Navigate to="/profile" replace={true} />;
         //navigate("profile");
       })
       .catch((theError) => {
+        () => navigate("/profile");
         if (theError.code == "auth/account-exists-with-different-credential") {
           setTheError(theError.customData._tokenResponse.verifiedProvider[0]);
         }

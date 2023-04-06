@@ -30,6 +30,24 @@ const router = createBrowserRouter([
         element: <PageLanding />,
       },
       {
+        path: "https://sparkly-gecko-2b92e5.netlify.app/",
+        //element: <PageControl reqPage={1} />, //<PageProfile />,
+        element: (
+          <div>
+            <h1>Hello page landing !!!!</h1>
+          </div>
+        ),
+      },
+      {
+        path: "https://sparkly-gecko-2b92e5.netlify.app/login",
+        //element: <PageControl reqPage={1} />, //<PageProfile />,
+        element: (
+          <div>
+            <h1>Hello page landing !!!!</h1>
+          </div>
+        ),
+      },
+      {
         path: "/login",
         // element: <PageControl reqPage={0} />,
         element: <PageLogin />,

@@ -46,7 +46,7 @@ const router = createBrowserRouter([
         element: <PageLanding />,
       },
       {
-        path: "/login",
+        path: "login",
         // element: <PageControl reqPage={0} />,
         element: <PageLogin />,
       },

@@ -15,21 +15,21 @@ export default function Googgle() {
   const login = async () => {
     signInWithPopup(auth, googleProvider)
       .then((result) => {
-        let extracted = {
-          uid: result.user.uid,
-          loggedIn: true,
-          signInEmail: result.user.email,
-          profileName: result.user.displayName,
-          emailVerified: result.user.emailVerified,
-          photoURL: result.user.photoURL,
-          providerId: result.user.providerData[0].providerId,
-          phoneNumber: result.user.providerData[0].phoneNumber,
-        };
-        addProfile(obtained);
-        setTheUser(obtained);
-        console.log("navigate tuen...");
+        // let extracted = {
+        //   uid: result.user.uid,
+        //   loggedIn: true,
+        //   signInEmail: result.user.email,
+        //   profileName: result.user.displayName,
+        //   emailVerified: result.user.emailVerified,
+        //   photoURL: result.user.photoURL,
+        //   providerId: result.user.providerData[0].providerId,
+        //   phoneNumber: result.user.providerData[0].phoneNumber,
+        // };
+      //  addProfile(obtained);
+      //  setTheUser(obtained);
+      //  console.log("navigate tuen...");
         redirect("/profile");
-        navigate("/profile"); 
+        navigate("/profile");
         <Navigate to="/profile" replace={true} />;
       })
       .catch((theError) => {

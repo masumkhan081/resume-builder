@@ -9,7 +9,7 @@ export default function PageLanding() {
       {/* --start col-1 */}
       <div className="col-md-4 ">
         <span className="text-success h5 d-block text-center mb-3">
-          Go Routes deploy-2
+          Go Routes deploy-5:53
           <FcList size={20} className="mb-1 ms-1" />
         </span>
 

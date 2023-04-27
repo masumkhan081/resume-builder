@@ -58,7 +58,7 @@ export default function Provider({ children }) {
         }
       } else {
         console.log("  onAuthStateChanged ....no  <> existing user :  ");
-        // setLoading(false);
+        setLoading(false);
       }
     });
   }, []);
@@ -86,7 +86,6 @@ export default function Provider({ children }) {
         console.log("USER_EXISTS_IN_DB <>   true");
         setLoading(false);
         setUser({ ...user, ...obtained });
-        
       });
       if (USER_EXISTS_IN_DB == false) {
         //  create new user

@@ -15,15 +15,6 @@ import PDF from "./components/pages/PDF";
 //
 const router = createBrowserRouter([
   {
-    path: "https://sparkly-gecko-2b92e5.netlify.app/login",
-    element: <div>https://sparkly-gecko-2b92e5.netlify.app/login</div>,
-  },
-  {
-    path: "sparkly-gecko-2b92e5.netlify.app/login",
-    element: <div>sparkly-gecko-2b92e5.netlify.app/login</div>,
-  },
-
-  {
     path: "/",
     element: (
       <>

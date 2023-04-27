@@ -25,7 +25,9 @@ export default function PageProfile() {
   const refPhone = useRef();
   //
 
-  React.useEffect(() => {}, []);
+  React.useEffect(() => {
+    console.log("useeffect   -- --  profile page" + user + "   " + loading);
+  }, []);
 
   function handleSave(e) {
     e.preventDefault();
@@ -58,163 +60,165 @@ export default function PageProfile() {
   const btnClasses =
     "bg-success bg-opacity-25 bg-gradient border-3 border-start-0 border-top-0 border-bottom-0 border-end border-success shadow-sm btn btn-sm text-dark fw-bold";
 
-  if (loading) {
-    return <Loader />;
-  }
-  if (user.loggedIn == true && loading == false) {
-    return (
-      <div className=" mx-5 mt-4 rounded-3 shadow-sm">
-        <Form className="py-2 ps-3 gap-2">
-          <Form.Group className="mb-2 d-flex flex-row justify-content-between">
-            <div>
-              {/* <button className="border-0  bg-success bg-opacity-25 rounded-3"> */}
-              <FaUserEdit size={22} className=" ms-1 " onClick={toggleEdit} />
-              {/* </button> */}
-              <div className="mt-2 d-flex flex-row align-items-center">
-                <label
-                  disabled={notEditable}
-                  htmlFor="img"
-                  className=" d-flex flex-column flex-wrap bg-secondary bg-opacity-25 text-center rounded-circle"
-                  style={{ height: "165px", width: "165px" }}
-                >
-                  <Image
-                    disabled={notEditable}
-                    data-bs-toggle="tooltip"
-                    data-bs-placement="left"
-                    title="Click to add/replace"
-                    onMouseOver={() => {}}
-                    rounded
-                    // src="https://lh3.googleusercontent.com/a/AEdFTp5uZ1kD4TugJNubq-8qDPyzzWtAxnZpT0YMJg8b9g=s96-c"
-                    src={user.photoURL}
-                    className=" rounded-circle"
-                    style={{ height: "165px", width: "165px" }}
-                  />
-                  <FcAddImage
-                    disabled={notEditable}
-                    className=""
-                    size={30}
-                    htmlFor="img"
-                    data-bs-toggle="tooltip"
-                    data-bs-placement="top"
-                    title="Add/Replace image"
-                  />
-                </label>
+  // if (loading) {
+  //   return <Loader />;
+  // }
+  // if (user.loggedIn == true && loading == false) {
+  return (
+    <div>profile ...</div>
 
-                <input
-                  id="img"
-                  value={undefined}
-                  disabled={notEditable}
-                  //  className="hidden"
-                  onChange={(e) => {
-                    let files = e.target.files;
-                    console.log(files);
-                    let reader = new FileReader();
-                    reader.onload = (r) => {
-                      console.log(r.target.result);
-                      setTheUser({ photoURL: r.target.result });
-                    };
-                    reader.readAsDataURL(files[0]);
-                  }}
-                  style={{ display: "none" }}
-                  type="file"
-                  name="img"
-                  accept="image/*"
-                ></input>
-              </div>
-            </div>
-            <div>
-              <div className="d-flex flex-column justify-content-center gap-3 h-100">
-                <button
-                  onClick={() => {
-                    navigate("/profile/page1");
-                  }}
-                  className={btnClasses}
-                >
-                  Create/Edit Resume
-                  <IoIosCreate size={22} className="mb-1 ms-2 text-success" />
-                </button>
-                <button
-                  onClick={() => {
-                    navigate("myresume");
-                  }}
-                  className={btnClasses}
-                >
-                  View Resume Detail
-                  <BiDetail size={22} className="mb-1 ms-2 text-success" />
-                </button>
-                <button
-                  onClick={() => {
-                    navigate("myresume");
-                  }}
-                  className={btnClasses}
-                >
-                  Export PDF Resume
-                  <MdPictureAsPdf
-                    size={22}
-                    className="mb-1 ms-2 text-success"
-                  />
-                </button>
-              </div>
-            </div>
-          </Form.Group>
+    // <div className=" mx-5 mt-4 rounded-3 shadow-sm">
+    //   <Form className="py-2 ps-3 gap-2">
+    //     <Form.Group className="mb-2 d-flex flex-row justify-content-between">
+    //       <div>
+    //         {/* <button className="border-0  bg-success bg-opacity-25 rounded-3"> */}
+    //         <FaUserEdit size={22} className=" ms-1 " onClick={toggleEdit} />
+    //         {/* </button> */}
+    //         <div className="mt-2 d-flex flex-row align-items-center">
+    //           <label
+    //             disabled={notEditable}
+    //             htmlFor="img"
+    //             className=" d-flex flex-column flex-wrap bg-secondary bg-opacity-25 text-center rounded-circle"
+    //             style={{ height: "165px", width: "165px" }}
+    //           >
+    //             <Image
+    //               disabled={notEditable}
+    //               data-bs-toggle="tooltip"
+    //               data-bs-placement="left"
+    //               title="Click to add/replace"
+    //               onMouseOver={() => {}}
+    //               rounded
+    //               // src="https://lh3.googleusercontent.com/a/AEdFTp5uZ1kD4TugJNubq-8qDPyzzWtAxnZpT0YMJg8b9g=s96-c"
+    //               src={user.photoURL}
+    //               className=" rounded-circle"
+    //               style={{ height: "165px", width: "165px" }}
+    //             />
+    //             <FcAddImage
+    //               disabled={notEditable}
+    //               className=""
+    //               size={30}
+    //               htmlFor="img"
+    //               data-bs-toggle="tooltip"
+    //               data-bs-placement="top"
+    //               title="Add/Replace image"
+    //             />
+    //           </label>
 
-          <Form.Group className="mt-1 mb-2 me-3 col-md-6">
-            <Badge
-              text="dark"
-              className="d-block text-start rounded-3 bg-light bg-opacity-10 "
-            >
-              <Badge className="bg-secondary bg-opacity-10 text-dark me-3">
-                Email address
-              </Badge>
-              {user.signInEmail} {" (" + user.providerId + ")"}
-            </Badge>
-          </Form.Group>
-          <Form.Group className="mb-2 me-3 col-md-6">
-            <span>Profile Name</span>
-            <Form.Control
-              disabled={notEditable}
-              ref={refPName}
-              type="text"
-              className="bg-light "
-              style={{ height: "30px" }}
-              placeholder="Enter Profile Name"
-              value={user.profileName}
-              onChange={() => {
-                setTheUser({ profileName: refPName.current.value });
-              }}
-            />
-          </Form.Group>
-          <Form.Group className="mb-2 me-3 col-md-6">
-            <span>Phone</span>
-            <Form.Control
-              disabled={notEditable}
-              ref={refPhone}
-              type="text"
-              className="bg-light "
-              style={{ height: "30px" }}
-              placeholder="Enter Phone Number"
-              value={user.phoneNumber == null ? "" : user.phoneNumber}
-              onChange={() => {
-                setTheUser({ phoneNumber: refPhone.current.value });
-              }}
-            />
-          </Form.Group>
+    //           <input
+    //             id="img"
+    //             value={undefined}
+    //             disabled={notEditable}
+    //             //  className="hidden"
+    //             onChange={(e) => {
+    //               let files = e.target.files;
+    //               console.log(files);
+    //               let reader = new FileReader();
+    //               reader.onload = (r) => {
+    //                 console.log(r.target.result);
+    //                 setTheUser({ photoURL: r.target.result });
+    //               };
+    //               reader.readAsDataURL(files[0]);
+    //             }}
+    //             style={{ display: "none" }}
+    //             type="file"
+    //             name="img"
+    //             accept="image/*"
+    //           ></input>
+    //         </div>
+    //       </div>
+    //       <div>
+    //         <div className="d-flex flex-column justify-content-center gap-3 h-100">
+    //           <button
+    //             onClick={() => {
+    //               navigate("/profile/page1");
+    //             }}
+    //             className={btnClasses}
+    //           >
+    //             Create/Edit Resume
+    //             <IoIosCreate size={22} className="mb-1 ms-2 text-success" />
+    //           </button>
+    //           <button
+    //             onClick={() => {
+    //               navigate("myresume");
+    //             }}
+    //             className={btnClasses}
+    //           >
+    //             View Resume Detail
+    //             <BiDetail size={22} className="mb-1 ms-2 text-success" />
+    //           </button>
+    //           <button
+    //             onClick={() => {
+    //               navigate("myresume");
+    //             }}
+    //             className={btnClasses}
+    //           >
+    //             Export PDF Resume
+    //             <MdPictureAsPdf
+    //               size={22}
+    //               className="mb-1 ms-2 text-success"
+    //             />
+    //           </button>
+    //         </div>
+    //       </div>
+    //     </Form.Group>
 
-          <Button
-            disabled={notEditable}
-            onClick={handleSave}
-            className="mt-2 btn  bg-secondary bg-opacity-50 border-0 text-dark col-md-3"
-          >
-            Save Update
-          </Button>
-          <span className="ms-2 w-50 text-danger fw-bold">{error}</span>
-        </Form>
-      </div>
-    );
-  }
-  if (user.loggedIn == false && loading == false) {
-    navigate("/login");
-  }
+    //     <Form.Group className="mt-1 mb-2 me-3 col-md-6">
+    //       <Badge
+    //         text="dark"
+    //         className="d-block text-start rounded-3 bg-light bg-opacity-10 "
+    //       >
+    //         <Badge className="bg-secondary bg-opacity-10 text-dark me-3">
+    //           Email address
+    //         </Badge>
+    //         {user.signInEmail} {" (" + user.providerId + ")"}
+    //       </Badge>
+    //     </Form.Group>
+    //     <Form.Group className="mb-2 me-3 col-md-6">
+    //       <span>Profile Name</span>
+    //       <Form.Control
+    //         disabled={notEditable}
+    //         ref={refPName}
+    //         type="text"
+    //         className="bg-light "
+    //         style={{ height: "30px" }}
+    //         placeholder="Enter Profile Name"
+    //         value={user.profileName}
+    //         onChange={() => {
+    //           setTheUser({ profileName: refPName.current.value });
+    //         }}
+    //       />
+    //     </Form.Group>
+    //     <Form.Group className="mb-2 me-3 col-md-6">
+    //       <span>Phone</span>
+    //       <Form.Control
+    //         disabled={notEditable}
+    //         ref={refPhone}
+    //         type="text"
+    //         className="bg-light "
+    //         style={{ height: "30px" }}
+    //         placeholder="Enter Phone Number"
+    //         value={user.phoneNumber == null ? "" : user.phoneNumber}
+    //         onChange={() => {
+    //           setTheUser({ phoneNumber: refPhone.current.value });
+    //         }}
+    //       />
+    //     </Form.Group>
+
+    //     <Button
+    //       disabled={notEditable}
+    //       onClick={handleSave}
+    //       className="mt-2 btn  bg-secondary bg-opacity-50 border-0 text-dark col-md-3"
+    //     >
+    //       Save Update
+    //     </Button>
+    //     <span className="ms-2 w-50 text-danger fw-bold">{error}</span>
+    //   </Form>
+    // </div>
+  );
+  // }
+  // if (user.loggedIn == false && loading == false) {
+  //   navigate("/login");
+  // }
 }
 
 function ConnectWith({ setReqPage }) {

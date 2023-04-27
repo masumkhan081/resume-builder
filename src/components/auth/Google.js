@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
-import { Navigate, useNavigate, redirect } from "react-router-dom";
+import { useNavigate, redirect } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { auth } from "../utils/firb";
@@ -8,6 +9,7 @@ import { authContext } from "../../context/Provider";
 export default function Googgle() {
   //
   const navigate = useNavigate();
+  //
   const { setTheUser, setTheError } = useContext(authContext);
   //
   const googleProvider = new GoogleAuthProvider();
@@ -15,24 +17,24 @@ export default function Googgle() {
   const login = async () => {
     signInWithPopup(auth, googleProvider)
       .then((result) => {
-        // let extracted = {
-        //   uid: result.user.uid,
-        //   loggedIn: true,
-        //   signInEmail: result.user.email,
-        //   profileName: result.user.displayName,
-        //   emailVerified: result.user.emailVerified,
-        //   photoURL: result.user.photoURL,
-        //   providerId: result.user.providerData[0].providerId,
-        //   phoneNumber: result.user.providerData[0].phoneNumber,
-        // };
-      //  addProfile(obtained);
-      //  setTheUser(obtained);
-      //  console.log("navigate tuen...");
-        redirect("/profile");
+        let extracted = {
+          uid: result.user.uid,
+          loggedIn: true,
+          signInEmail: result.user.email,
+          profileName: result.user.displayName,
+          emailVerified: result.user.emailVerified,
+          photoURL: result.user.photoURL,
+          providerId: result.user.providerData[0].providerId,
+          phoneNumber: result.user.providerData[0].phoneNumber,
+        };
+        // addProfile(obtained);
+        setTheUser(extracted);
+        console.log("just nav ?? <>-");
+
         navigate("/profile");
-        <Navigate to="/profile" replace={true} />;
       })
       .catch((theError) => {
+        console.log("err:   " + theError);
         () => navigate("/profile");
         if (theError.code == "auth/account-exists-with-different-credential") {
           setTheError(theError.customData._tokenResponse.verifiedProvider[0]);

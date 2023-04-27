@@ -6,14 +6,18 @@ import {
   doc,
   getDocs,
   query,
-  where, 
+  where,
   setDoc,
 } from "firebase/firestore";
+//
+
 //
 export const authContext = createContext();
 const f = false;
 const t = true;
+//
 export default function Provider({ children }) {
+  //
   const [user, setUser] = useState({
     loggedIn: f,
     resumeStatus: f,
@@ -27,15 +31,24 @@ export default function Provider({ children }) {
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-
+  //
   useEffect(() => {
-    console.log("from monther context");
+    //
     setLoading(true);
+    console.log("useEffect...provider ..." + loading);
+    //
     onAuthStateChanged(auth, (theUser) => {
-      console.log("inside onauth ........");
       if (theUser) {
+        console.log(
+          " onAuthStateChanged ....yes  <> existing user :  " +
+            JSON.stringify(user)
+        );
         let emal = theUser.email;
-        console.log("inside onauthstatec ...." + emal);
+        //
+        console.log(
+          "useEffect ... onAuthStateChanged ....existing user :  " + emal
+        );
+        //
         try {
           const userRef = collection(db, "profiles");
           const q = query(userRef, where("signInEmail", "==", emal));
@@ -44,17 +57,21 @@ export default function Provider({ children }) {
           console.error("Error finding: ", e);
         }
       } else {
-        setLoading(false);
+        console.log("  onAuthStateChanged ....no  <> existing user :  ");
+        // setLoading(false);
       }
     });
   }, []);
 
   async function readData(q, theUser) {
+    //
+    let USER_EXISTS_IN_DB = false;
     try {
       const querySnapshot = await getDocs(q);
-      let USER_EXISTS_IN_DB = false;
       //
       querySnapshot.forEach((doc) => {
+        USER_EXISTS_IN_DB = true;
+
         let obtained = {
           uid: doc.data().uid,
           loggedIn: true,
@@ -66,9 +83,10 @@ export default function Provider({ children }) {
           providerId: doc.data().providerId,
           phoneNumber: doc.data().phoneNumber,
         };
-        USER_EXISTS_IN_DB = true;
-        setTheUser(obtained);
+        console.log("USER_EXISTS_IN_DB <>   true");
         setLoading(false);
+        setUser({ ...user, ...obtained });
+        
       });
       if (USER_EXISTS_IN_DB == false) {
         //  create new user
@@ -88,9 +106,9 @@ export default function Provider({ children }) {
           doc(db, "profiles", theUser.email),
           extracted
         );
-
-        setTheUser(extracted);
+        console.log("USER_EXISTS_IN_DB <>   false");
         setLoading(false);
+        setUser({ ...user, ...extracted });
       }
     } catch (e) {
       console.error("Error finding: ", e);
@@ -98,8 +116,8 @@ export default function Provider({ children }) {
   }
 
   function setTheUser(nextState) {
+    console.log("setTheUser ....  ");
     setUser({ ...user, ...nextState });
-    //setLoading(false);
   }
 
   function setTheError(usedProvider) {

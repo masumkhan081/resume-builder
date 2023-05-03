@@ -9,8 +9,8 @@ export default function PageLanding() {
       {/* --start col-1 */}
       <div className="col-md-4 ">
         <span className="text-success h5 d-block text-center mb-3">
-          <FcList size={20} className="mb-1 ms-1" />
-          Go Routes (last commit: 03.05.23)
+          Go Routes <FcList size={20} className="mb-1 mx-1" /> (last commit:
+          03.05.23)
         </span>
 
         <QuickLinks />
@@ -85,6 +85,7 @@ function QuickLinks() {
         Log in
       </button>
       <button
+        disabled={true}
         onClick={() => {
           navigate("/profile");
         }}
@@ -93,6 +94,7 @@ function QuickLinks() {
         Profile Page
       </button>
       <button
+        disabled={true}
         onClick={() => {
           navigate("/profile/page1");
         }}
@@ -101,6 +103,7 @@ function QuickLinks() {
         Page1
       </button>
       <button
+        disabled={true}
         onClick={() => {
           navigate("/profile/page2");
         }}
@@ -109,6 +112,7 @@ function QuickLinks() {
         Page2
       </button>
       <button
+        disabled={true}
         onClick={() => {
           navigate("/profile/page3");
         }}
@@ -117,6 +121,7 @@ function QuickLinks() {
         Page3
       </button>
       <button
+        disabled={true}
         onClick={() => {
           navigate("/profile/myresume");
         }}
@@ -125,6 +130,7 @@ function QuickLinks() {
         View Resume
       </button>
       <button
+        disabled={true}
         onClick={() => {
           navigate("/profile/myresume-pdf");
         }}

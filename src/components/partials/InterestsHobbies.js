@@ -47,12 +47,13 @@ export default function InterestsHobbies() {
   function enlist_hobby(e) {
     e.preventDefault();
     let hobbyName = hobbyRef.current.value;
+    console.log("hobbyName:  " + hobbyName);
     if (state.hobbies.length > 5) {
       setHobbyMsg("limit exceeded");
     } else if (state.hobbies.includes(hobbyName)) {
       setHobbyMsg("already listed");
     } else if (hobbyName.length < 2) {
-      setHobbyMsg("ur  is surprisingly tiny");
+      setHobbyMsg("a d**k of `{$hobbyName.length}` is too tiny");
     } else {
       hobbyRef.current.value = "";
       //addHobby(hobbyName);

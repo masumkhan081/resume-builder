@@ -9,8 +9,8 @@ export default function PageLanding() {
       {/* --start col-1 */}
       <div className="col-md-4 ">
         <span className="text-success h5 d-block text-center mb-3">
-          Go Routes deploy-5:53
           <FcList size={20} className="mb-1 ms-1" />
+          Go Routes (last commit: 03.05.23)
         </span>
 
         <QuickLinks />
@@ -25,20 +25,43 @@ export default function PageLanding() {
         </span>
         <ul className=" rounded d-flex text-start ps-3 flex-column gap-2 list-unstyled ">
           <li className=" ">
+            <strong className="bg-light rounded px-1">Objective: </strong>
+          </li>
+          <li className="rounded ">
+            <ul>
+              <li>
+                Create resume online putting neccessary info, export as pdf
+                picking a theme
+              </li>
+            </ul>
+          </li>
+          <li className=" ">
             <strong className="bg-light rounded px-1">Features: </strong>
           </li>
           <li className="rounded ">
-            Register, Login, Protected routes based on Json Web Token,
-            Add-Edit-Delete-Check existence of data, Ensuring other data
-            associated or not at deletion, Tabular view
+            <ul>
+              <li>Easy sign in options to start</li>
+              <li>
+                Data saved in cloud - means an unfinished attempt wouldn't be
+                lost regarding the data u have put
+              </li>
+              <li>
+                Well, you can edit ur info any time navigating page to page
+              </li>
+              <li>
+                Pick a theme for the pdf output to follow ( Not Yet Implemented
+                )
+              </li>
+            </ul>
           </li>
           <li className=" ">
-            <strong className="bg-light rounded px-1">Implemented: </strong>
+            <strong className="bg-light rounded px-1">Limitations: </strong>
           </li>
           <li className="rounded ">
-            Register, Login, Protected routes based on Json Web Token,
-            Add-Edit-Delete-Check existence of data, Ensuring other data
-            associated or not at deletion, Tabular view
+            <ul>
+              <li>Some of the features not yet Implemented</li>
+              <li>Several routing issues in hand</li>
+            </ul>
           </li>
         </ul>
         {/* --end col-2 */}

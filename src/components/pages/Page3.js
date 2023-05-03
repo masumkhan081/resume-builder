@@ -95,15 +95,26 @@ export default function Page3() {
     setState({ ...state, ...nextState });
   }
 
-  function setTestData() {
-    setState({
-      ...state,
-      ...{
-        hobbies: ["shitting"],
-        interests: ["api first development"],
-        projects: [{ title: "hmis", description: "desc", link: "/go/here" }],
-      },
-    });
+  function setTestData(action) {
+    action == "reset"
+      ? setState({
+          ...state,
+          ...{
+            hobbies: [],
+            interests: [],
+            projects: [],
+          },
+        })
+      : setState({
+          ...state,
+          ...{
+            hobbies: ["shitting"],
+            interests: ["api first development"],
+            projects: [
+              { title: "hmis", description: "desc", link: "/go/here" },
+            ],
+          },
+        });
   }
 
   function removeProject(project) {

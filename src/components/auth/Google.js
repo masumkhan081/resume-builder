@@ -28,10 +28,10 @@ export default function Googgle() {
           phoneNumber: result.user.providerData[0].phoneNumber,
         };
         // addProfile(obtained);
-        setTheUser(extracted);
-        console.log("just nav ?? <>-");
+        //  setTheUser(extracted);
+        // console.log("just nav ?? <>-");
 
-        navigate("/profile");
+        //  navigate("/profile");
       })
       .catch((theError) => {
         console.log("err:   " + theError);

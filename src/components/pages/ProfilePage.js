@@ -26,7 +26,7 @@ export default function PageProfile() {
   //
 
   React.useEffect(() => {
-    console.log("useeffect   -- --  profile page" + user + "   " + loading);
+    console.log("useeffect   -- --  profile page");
   }, []);
 
   function handleSave(e) {

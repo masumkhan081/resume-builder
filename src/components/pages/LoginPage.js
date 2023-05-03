@@ -40,7 +40,10 @@ export default function PageLogin() {
             <br />
           )}
         </div>
-        <div className="mt-2 row d-flex gap-5 justify-content-around">
+        <div
+          className="mt-2 row d-flex justify-content-around"
+          style={{ minHeight: "450px" }}
+        >
           <Emailpass />
           {/* <div className=" col-md-1 col-sm-2 mt-5 text-wrap">{error}</div> */}
           <AuthOptions />

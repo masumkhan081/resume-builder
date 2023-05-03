@@ -258,6 +258,6 @@ export default function Page1() {
   }
   if (user.loggedIn == false && loading == false) {
     //return <Navigate to="/login" replace={true} />;
-    navigate("/login");
+     navigate("/login");
   }
 }

@@ -53,7 +53,7 @@ export default function Page2() {
   async function saveAndNext() {
     if (state.educations.length < 1) {
       showError("Your academic background plz ?");
-    } else{
+    } else {
       let data = {
         educations: state.educations,
         experiences: state.experiences,
@@ -76,22 +76,30 @@ export default function Page2() {
   function updateState(nextState) {
     setState({ ...state, ...nextState });
   }
-  function setTestData() {
-    setState({
-      ...state,
-      ...{
-        educations: [
-          { institution: "neub", degreeName: "bsc", passYear: "2018" },
-        ],
-        experiences: [
-          {
-            employer: "nevadia",
-            duration: "jan-2018tojan-2019",
-            jobTitle: "soft. developer",
+  function setTestData(action) {
+    action == "reset"
+      ? setState({
+          ...state,
+          ...{
+            educations: [],
+            experiences: [],
           },
-        ],
-      },
-    });
+        })
+      : setState({
+          ...state,
+          ...{
+            educations: [
+              { institution: "neub", degreeName: "bsc", passYear: "2018" },
+            ],
+            experiences: [
+              {
+                employer: "nevadia",
+                duration: "jan-2018tojan-2019",
+                jobTitle: "soft. developer",
+              },
+            ],
+          },
+        });
   }
   //
   const clsNames = "mt-4 row mx-auto d-flex justify-content-around border-1";

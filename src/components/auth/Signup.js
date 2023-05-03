@@ -59,7 +59,7 @@ export default function Signup() {
       <span className="text-end d-block text-danger">{error}</span>
       <form onSubmit={handleSignup} method="POST" className="mt-5 pt-2">
         <div className="   text-start mb-3">
-          <label htmlFor="email">masum498673@gmail.com</label>
+          <label htmlFor="email">Email</label>
           <input
             type="email"
             required={true}
@@ -69,7 +69,7 @@ export default function Signup() {
           />
         </div>
         <div className=" text-start mb-3">
-          <label htmlFor="password ">123456</label>
+          <label htmlFor="password ">Password</label>
           <input
             type="password"
             required={true}

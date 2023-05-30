@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
 import { signOut, onAuthStateChanged } from "firebase/auth";
-import { auth, db } from "../components/utils/firb";
+import { auth, db } from "../pages/utils/firb";
 import {
   collection,
   doc,
@@ -10,44 +10,52 @@ import {
   setDoc,
 } from "firebase/firestore";
 //
-
-//
 export const authContext = createContext();
-const f = false;
-const t = true;
 //
 export default function Provider({ children }) {
   //
   const [user, setUser] = useState({
-    loggedIn: f,
-    resumeStatus: f,
-    uid: "",
-    signInEmail: "",
-    profileName: "",
-    photoURL: "",
-    emailVerified: false,
-    providerId: "",
-    phoneNumber: "",
+    account_pic: "",
+    account_email: "",
+    account_name: "",
+    resume_name: "",
+    resume_status: false,
+    resume_email: "",
+    dob: "",
+    address: "",
+    github: "github.com/",
+    linkedin: "linkedin.com/in/",
+    portfolio: "",
+    resume_pic: "",
+    phone_number: "",
+    title: "",
+    front_end_skills: [],
+    back_end_skills: [],
+    data_tier_skills: [],
+    personal_skills: [],
+    hobbies: [],
+    interests: [],
+    projects: [],
+    educations: [],
+    experiences: [],
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   //
   useEffect(() => {
     //
-    setLoading(true);
-    console.log("useEffect...provider ..." + loading);
-    //
     onAuthStateChanged(auth, (theUser) => {
       if (theUser) {
-        console.log(
-          " onAuthStateChanged ....yes  <> existing user :  " +
-            JSON.stringify(user)
-        );
+        //console.log(JSON.stringify(theUser));
+        setUser({
+          ...user,
+          ...{
+            account_email: theUser.email,
+            pic: theUser.photoURL,
+            account_name: theUser.displayName,
+          },
+        });
         let emal = theUser.email;
-        //
-        console.log(
-          "useEffect ... onAuthStateChanged ....existing user :  " + emal
-        );
         //
         try {
           const userRef = collection(db, "profiles");
@@ -58,7 +66,6 @@ export default function Provider({ children }) {
         }
       } else {
         console.log("  onAuthStateChanged ....no  <> existing user :  ");
-        setLoading(false);
       }
     });
   }, []);
@@ -73,39 +80,26 @@ export default function Provider({ children }) {
         USER_EXISTS_IN_DB = true;
 
         let obtained = {
-          uid: doc.data().uid,
-          loggedIn: true,
-          resumeStatus: doc.data().resumeStatus,
-          signInEmail: doc.data().signInEmail,
-          profileName: doc.data().profileName,
-          emailVerified: doc.data().emailVerified,
-          photoURL: doc.data().photoURL,
-          providerId: doc.data().providerId,
-          phoneNumber: doc.data().phoneNumber,
+          resume_status: doc.data().resumeStatus,
         };
-        console.log("USER_EXISTS_IN_DB <>   true");
+        console.log("USER exist in db ");
         setLoading(false);
         setUser({ ...user, ...obtained });
       });
       if (USER_EXISTS_IN_DB == false) {
         //  create new user
         let extracted = {
-          uid: theUser.uid,
-          loggedIn: true,
-          resumeStatus: false,
-          signInEmail: theUser.email,
-          profileName: theUser.displayName,
-          emailVerified: theUser.emailVerified,
-          photoURL: theUser.photoURL,
-          providerId: theUser.providerData[0].providerId,
-          phoneNumber: theUser.providerData[0].phoneNumber,
+          resume_status: false,
+          account_email: theUser.email,
+          account_name: theUser.displayName,
+          account_pic: theUser.photoURL,
         };
 
         const docRef = await setDoc(
           doc(db, "profiles", theUser.email),
           extracted
         );
-        console.log("USER_EXISTS_IN_DB <>   false");
+        console.log("USER created newly");
         setLoading(false);
         setUser({ ...user, ...extracted });
       }
@@ -115,7 +109,6 @@ export default function Provider({ children }) {
   }
 
   function setTheUser(nextState) {
-    console.log("setTheUser ....  ");
     setUser({ ...user, ...nextState });
   }
 
@@ -126,15 +119,15 @@ export default function Provider({ children }) {
       " sign-up-account. Click corresponding button";
     errMsg = errMsg.replace(/"|"|.com/gi, "");
     setError(errMsg);
-    setTimeout(() => {
-      setToast("");
-    }, 2000);
+    // setTimeout(() => {
+    //   setToast("");
+    // }, 2000);
   }
 
   function logout() {
     signOut(auth)
       .then(() => {
-        setUser({ ...user, ...{ loggedIn: false } });
+        setUser({ ...user, ...{ account_email: "" } });
       })
       .catch((error) => {
         setError("error in loggingout");

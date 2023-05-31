@@ -1,12 +1,12 @@
 import React, { useContext, useState, useRef } from "react";
-import { Badge, Form, Button } from "react-bootstrap";
+import {  Form } from "react-bootstrap";
 import { EnhancedTitle, TextInput, PanelAbout } from "./Common";
 import List from "./List";
 import { authContext } from "../../context/Provider";
 //
 export default function InterestsHobbies() {
   //
-  const { user, setTheUser, loading } = React.useContext(authContext);
+  const { user, setTheUser /*, loading */ } = useContext(authContext);
   //
   const msgCommon5 = "at most 5";
   const [hobbyMsg, setHobbyMsg] = useState(msgCommon5);

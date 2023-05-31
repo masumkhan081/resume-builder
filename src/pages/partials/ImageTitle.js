@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { FcAddImage } from "react-icons/fc";
-import { Image, Badge, label, FormText, Form } from "react-bootstrap";
+import { Image,  Form } from "react-bootstrap";
 //
 import { authContext } from "../../context/Provider";
 //
@@ -10,7 +10,7 @@ export default function ImageTitle() {
   const [checked, setChecked] = useState(true);
 
   function SET_PROFILE_PIC_ON_RESUME(e) {
-    if (checked == true) {
+    if (checked === true) {
       setTheUser({ resume_pic: user.account_pic });
       setChecked(!checked);
     } else {

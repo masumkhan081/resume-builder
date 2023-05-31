@@ -1,26 +1,15 @@
 import React, { useContext } from "react";
 import { authContext } from "../../context/Provider";
-import UsedTools from "./UsedTools";
-import {
-  Container,
-  Badge,
-  Button,
-  Nav,
-  Navbar,
-  Dropdown,
-  NavDropdown,
-  DropdownButton,
-} from "react-bootstrap";
-import { FaHome, FaClipboardList, FaList } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
-import { TbLayoutList } from "react-icons/tb";
+// import UsedTools from "./UsedTools";
+import { Container, Nav, Navbar } from "react-bootstrap";
+// import { FaHome, FaClipboardList, FaList } from "react-icons/fa";
+// import { TbLayoutList } from "react-icons/tb";
 import { GoHome } from "react-icons/go";
 import { IconContext } from "react-icons";
 //
 
 export default function Header() {
   const { logout, user } = useContext(authContext);
-  const navigate = useNavigate();
 
   return (
     <IconContext.Provider value={{ className: "shared-class", size: 20 }}>
@@ -52,7 +41,7 @@ export default function Header() {
                   About Project
                 </Nav.Link>
 
-                {user.account_name ? (
+                {user.account_email ? (
                   <>
                     <Nav.Link
                       href="/resume"
@@ -61,8 +50,9 @@ export default function Header() {
                       My Resume
                     </Nav.Link>
                     <Nav.Link
-                      href="/logout"
-                      className="px-2 py-0 text-center rounded-3 text-success"
+                      //href="/logout"
+                      onClick={logout}
+                      className="btn btn-sm px-2 py-0 text-center rounded-3 text-success"
                     >
                       Log Out
                     </Nav.Link>

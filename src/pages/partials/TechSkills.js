@@ -1,9 +1,9 @@
-import React, { useContext, useState, useRef, useEffect } from "react";
-import { Badge, Form, Button } from "react-bootstrap";
-import { FaWindowClose } from "react-icons/fa";
-import { FcDataSheet, FcDatabase, FcAcceptDatabase } from "react-icons/fc";
-import { AiFillApi, AiFillDatabase } from "react-icons/ai";
-import { GrAdd, GrClose } from "react-icons/gr";
+import React, { useContext, useState, useRef } from "react";
+import { Badge, Form } from "react-bootstrap";
+// import { FaWindowClose } from "react-icons/fa";
+// import { FcDataSheet, FcDatabase, FcAcceptDatabase } from "react-icons/fc";
+// import { AiFillApi, AiFillDatabase } from "react-icons/ai";
+// import { GrAdd, GrClose } from "react-icons/gr";
 import { BiListPlus } from "react-icons/bi";
 import List from "./List";
 import { EnhancedTitle, TextInput } from "./Common";
@@ -12,7 +12,7 @@ import { authContext } from "../../context/Provider";
 
 export default function TechSkills() {
   //
-  const { user, loading, error, setTheUser } = useContext(authContext);
+  const { user, setTheUser } = useContext(authContext);
   //
   const msgCommon10 = "Total 10 skills";
   const msgCommon5 = "Total 5 skills";

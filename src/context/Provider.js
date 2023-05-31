@@ -51,7 +51,7 @@ export default function Provider({ children }) {
           ...user,
           ...{
             account_email: theUser.email,
-            pic: theUser.photoURL,
+            account_pic: theUser.photoURL,
             account_name: theUser.displayName,
           },
         });
@@ -59,7 +59,7 @@ export default function Provider({ children }) {
         //
         try {
           const userRef = collection(db, "profiles");
-          const q = query(userRef, where("signInEmail", "==", emal));
+          const q = query(userRef, where("account_email", "==", emal));
           readData(q, theUser);
         } catch (e) {
           console.error("Error finding: ", e);
@@ -72,6 +72,7 @@ export default function Provider({ children }) {
 
   async function readData(q, theUser) {
     //
+    let emal = theUser.email;
     let USER_EXISTS_IN_DB = false;
     try {
       const querySnapshot = await getDocs(q);
@@ -95,13 +96,9 @@ export default function Provider({ children }) {
           account_pic: theUser.photoURL,
         };
 
-        const docRef = await setDoc(
-          doc(db, "profiles", theUser.email),
-          extracted
-        );
+        const docRef = await setDoc(doc(db, "profiles", emal), extracted);
         console.log("USER created newly");
         setLoading(false);
-        setUser({ ...user, ...extracted });
       }
     } catch (e) {
       console.error("Error finding: ", e);

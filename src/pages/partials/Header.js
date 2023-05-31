@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { authContext } from "../../context/Provider";
+import { Link, useNavigate } from "react-router-dom";
 // import UsedTools from "./UsedTools";
 import { Container, Nav, Navbar } from "react-bootstrap";
 // import { FaHome, FaClipboardList, FaList } from "react-icons/fa";
@@ -10,7 +11,8 @@ import { IconContext } from "react-icons";
 
 export default function Header() {
   const { logout, user } = useContext(authContext);
-
+  const navigate = useNavigate();
+  //
   return (
     <IconContext.Provider value={{ className: "shared-class", size: 20 }}>
       <div className="d-flex container-fluid   bg-gradient flex-column pt-1">
@@ -35,10 +37,12 @@ export default function Header() {
                   Home
                 </Nav.Link>
                 <Nav.Link
-                  href="/about"
+                  onClick={() => {
+                    navigate("/about");
+                  }}
                   className="px-2 py-0 text-center rounded-3 text-success"
                 >
-                  About Project
+                  About Project!
                 </Nav.Link>
 
                 {user.account_email ? (

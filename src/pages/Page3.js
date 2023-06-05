@@ -18,37 +18,12 @@ export default function Page3() {
   const navigate = useNavigate();
 
   React.useEffect(() => {
-    // getPage3();
     console.log("pg-3 mounted");
     return () => {
       console.log("pag3 unmounted");
     };
   }, []);
 
-  async function getPage3() {
-    try {
-      let emal = user.signInEmail;
-      const resumeRef = doc(
-        db,
-        "resumes",
-        "study.contents.of.masumkhan@gmail.com"
-      );
-      const resumeSnap = await getDoc(resumeRef);
-      if (resumeSnap.exists()) {
-        let obtained = {
-          hobbies: resumeSnap.data().hobbies,
-          interests: resumeSnap.data().interests,
-          projects: resumeSnap.data().projects,
-        };
-        console.log("obtained-pg-3: " + JSON.stringify(obtained));
-        setTheUser({ obtained });
-      } else {
-        console.log("pg-3: No document -> " + user.signInEmail);
-      }
-    } catch (e) {
-      console.error("pg-3: Error finding: ", e);
-    }
-  }
   function showError(msg) {
     setPage3Error(msg);
     setTimeout(() => {
@@ -56,7 +31,7 @@ export default function Page3() {
     }, 3000);
   }
   async function savePage3() {
-    let emal = user.signInEmail;
+    let emal = user.account_email;
     console.log(
       user.hobbies.length +
         "  " +
@@ -76,17 +51,17 @@ export default function Page3() {
         interests: user.interests,
         projects: user.projects,
       };
-      if (user.resumeStatus == false) {
-        await setDoc(doc(db, "resumes", emal), data);
+      if (user.resume_status == false) {
+        //  await setDoc(doc(db, "resumes", emal), data);
         const profileRef = doc(db, "profiles", emal);
         await updateDoc(profileRef, {
-          resumeStatus: true,
+          resume_status: true,
         });
-        setTheUser({ resumeStatus: true });
-      } else {
-        const resumeRef = doc(db, "resumes", emal);
-        await updateDoc(resumeRef, data);
+        setTheUser({ resume_status: true });
       }
+      const resumeRef = doc(db, "resumes", emal);
+      await updateDoc(resumeRef, data);
+
       navigate("/resume");
     }
   }
@@ -105,7 +80,7 @@ export default function Page3() {
   }
 
   const clsNames =
-    "mt-4  row mx-auto d-flex justify-content-center border-0 border-bottom";
+    "mt-4 row mx-auto d-flex justify-content-center border-0 border-bottom";
 
   //   if (loading == true) {
   //     return <Loader />;

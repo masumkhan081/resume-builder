@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { authContext } from "../../context/Provider";
 import { Link, useNavigate } from "react-router-dom";
 // import UsedTools from "./UsedTools";
-import { Container, Nav, Navbar } from "react-bootstrap";
+import { Container, Nav, Navbar, NavbarBrand } from "react-bootstrap";
 // import { FaHome, FaClipboardList, FaList } from "react-icons/fa";
 // import { TbLayoutList } from "react-icons/tb";
 import { GoHome } from "react-icons/go";
@@ -10,7 +10,7 @@ import { IconContext } from "react-icons";
 //
 
 export default function Header() {
-  const { logout, user } = useContext(authContext);
+  const { logout, user, loading } = useContext(authContext);
   const navigate = useNavigate();
   //
   return (
@@ -18,11 +18,14 @@ export default function Header() {
       <div className="d-flex container-fluid   bg-gradient flex-column pt-1">
         <Navbar collapseOnSelect expand="lg" sticky="top" fixed="top">
           <Container>
-            {/* <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand> */}
-
-            {/* <Nav.Link href="/" className="text-success text-opacity-50 h3 m-0 py-0 ">
-          Resume-Builder
-        </Nav.Link> */}
+            {/* <NavbarBrand
+              onClick={() => {
+                navigate("/");
+              }}
+              className="text-success text-opacity-50 h3 m-0 py-0 "
+            >
+              Resume-Builder
+            </NavbarBrand> */}
             <Navbar.Toggle
               aria-controls="responsive-navbar-nav"
               className="btn "
@@ -30,7 +33,9 @@ export default function Header() {
             <Navbar.Collapse id="responsive-navbar-nav ">
               <Nav className=" flex w-100 justify-content-center gap-sm-3 gap-2 mt-sm-0  py-sm-0 py-2  ">
                 <Nav.Link
-                  href="/"
+                  onClick={() => {
+                    navigate("/");
+                  }}
                   className=" px-2  py-0 text-center rounded-3 text-success"
                 >
                   <GoHome size={20} className="text-success mb-1 me-1 " />
@@ -48,13 +53,14 @@ export default function Header() {
                 {user.account_email ? (
                   <>
                     <Nav.Link
-                      href="/resume"
+                      onClick={() => {
+                        navigate("/resume");
+                      }}
                       className="px-2 py-0 text-center rounded-3 text-success"
                     >
                       My Resume
                     </Nav.Link>
                     <Nav.Link
-                      //href="/logout"
                       onClick={logout}
                       className="btn btn-sm px-2 py-0 text-center rounded-3 text-success"
                     >
@@ -63,7 +69,9 @@ export default function Header() {
                   </>
                 ) : (
                   <Nav.Link
-                    href="/login"
+                    onClick={() => {
+                      navigate("/login");
+                    }}
                     className=" px-2  py-0 text-center rounded-3 text-success"
                   >
                     Log In
@@ -73,6 +81,10 @@ export default function Header() {
             </Navbar.Collapse>
           </Container>
         </Navbar>
+        {/* {user.account_email && (
+          <span>emal: {JSON.stringify(user.account_email)}</span>
+        )}
+        {user.resume_name && <span>{JSON.stringify(user.resume_name)}</span>} */}
       </div>
     </IconContext.Provider>
   );

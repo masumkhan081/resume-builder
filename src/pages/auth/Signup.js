@@ -1,9 +1,10 @@
 import React, { useContext, useRef, useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { authContext } from "../../context/Provider";
+import { auth, db } from "../utils/firb";
 //
 export default function Signup() {
-  const { user, setUser, auth } = useContext(authContext);
+  const { user, setTheUser } = useContext(authContext);
   const emailRef = useRef();
   const passRef = useRef();
   const confirmPassRef = useRef();
@@ -13,6 +14,7 @@ export default function Signup() {
   //
   async function handleSignup(e) {
     e.preventDefault();
+     
     if (passRef.current.value !== confirmPassRef.current.value) {
       setError("Passwords don't match");
       return;
@@ -33,12 +35,12 @@ export default function Signup() {
         .then((userCredential) => {
           const userData = userCredential.user;
           console.log(JSON.stringify(userData));
-          setUser(userData.email);
+          setTheUser({ account_email: userData.email });
         })
         .catch((err) => {
           let errorToSet =
             err.code === "auth/email-already-in-use"
-              ? "Email exists, Sign in instead"
+              ? "Email already exists, Sign in instead"
               : err.code;
           setError(errorToSet);
         });
@@ -97,6 +99,13 @@ export default function Signup() {
           Register
         </button>
       </form>
+      <button
+       onClick={()=>{emailRef.current.value="masum498673@gmail.com";
+       passRef.current.value = "123456";confirmPassRef.current.value = "123456";}}
+        className="btn btn-sm bg-success bg-opacity-25 shadow-sm bg-gradient rounded w-25 mt-3"
+      >
+        test data
+      </button>
     </div>
   );
 }

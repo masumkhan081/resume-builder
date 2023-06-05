@@ -10,19 +10,9 @@ export default function LoginPage() {
   const { user, loading, error } = useContext(authContext);
   const navigate = useNavigate();
   //
-  useEffect(() => {
-    console.log(JSON.stringify(loading));
-    loading === true ? navigate("/resume") : navigate("/login");
-  }, []);
+  useEffect(() => {}, []);
   //
-  if (loading === true) {
-    return <Loader />;
-  }
-  if (user.account_email && loading === false) {
-    navigate("/resume");
-  }
-
-  if (user.account_email === "" && loading === false) {
+  if (user.account_email === "") {
     return (
       <>
         <div className=" text-center mt-3 ">
@@ -43,5 +33,7 @@ export default function LoginPage() {
         </div>
       </>
     );
+  } else {
+    navigate("/resume");
   }
 }

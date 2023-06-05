@@ -3,13 +3,14 @@ import {
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
 } from "firebase/auth";
+import { auth, db } from "../utils/firb";
 import { authContext } from "../../context/Provider";
 //
 export default function Signin() {
   const signinEmailRef = useRef();
   const signinPassRef = useRef();
   //
-  const { user, setTheUser, auth, setTheError } = useContext(authContext);
+  const { user, setTheUser, setTheError } = useContext(authContext);
 
   async function handleSignin(e) {
     e.preventDefault();
@@ -25,7 +26,7 @@ export default function Signin() {
         const userData = userCredential.user;
         console.log("userData:  " + JSON.stringify(userData));
 
-        setTheUser({ ...user });
+        setTheUser({ account_email: userData.email });
         console.log("\n\nstate.user:  " + JSON.stringify(user));
       })
       .catch((theError) => {

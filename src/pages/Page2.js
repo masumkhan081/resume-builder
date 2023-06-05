@@ -10,35 +10,17 @@ import Loader from "./partials/Loader";
 
 //
 export default function Page2() {
+  //
   const { user, setTheUser, loading } = React.useContext(authContext);
-
   const [page2Error, setPage2Error] = React.useState("");
   const navigate = useNavigate();
-
+  //
   React.useEffect(() => {
-    getPage2();
     return () => {
       console.log("pag2 unmounted");
     };
   }, []);
 
-  async function getPage2() {
-    try {
-      const resumeRef = doc(db, "resumes", user.signInEmail);
-      const resumeSnap = await getDoc(resumeRef);
-      if (resumeSnap.exists()) {
-        let obtained = {
-          educations: resumeSnap.data().educations,
-          experiences: resumeSnap.data().experiences,
-        };
-        setTheUser({obtained});
-      } else {
-        console.log("pg-2: No document -> " + user.signInEmail);
-      }
-    } catch (e) {
-      console.error("pg-2: Error finding: ", e);
-    }
-  }
   function showError(msg) {
     setPage2Error(msg);
     setTimeout(() => {
@@ -46,6 +28,7 @@ export default function Page2() {
     }, 3000);
   }
   async function saveAndNext() {
+    const emal = user.account_email;
     if (user.educations.length < 1) {
       showError("Your academic background plz ?");
     } else {
@@ -53,44 +36,40 @@ export default function Page2() {
         educations: user.educations,
         experiences: user.experiences,
       };
-      if (user.resumeStatus == false) {
-        await setDoc(doc(db, "resumes", user.signInEmail), data);
-        const profileRef = doc(db, "profiles", user.signInEmail);
+      //
+      const resumeRef = doc(db, "resumes", emal);
+      await updateDoc(resumeRef, data);
+      //
+      if (user.resume_status == false) {
+        // await setDoc(doc(db, "resumes", emal), data);
+        const profileRef = doc(db, "profiles", emal);
         await updateDoc(profileRef, {
-          resumeStatus: true,
+          resume_status: true,
         });
-        setTheUser({ resumeStatus: true });
-      } else {
-        const resumeRef = doc(db, "resumes", user.signInEmail);
-        await updateDoc(resumeRef, data);
+        setTheUser({ resume_status: true });
       }
-      navigate("/resume/page3");
+
+      navigate("/resume-page-3");
     }
   }
 
   function setTestData(action) {
     action == "reset"
       ? setTheUser({
-          ...user,
-          ...{
-            educations: [],
-            experiences: [],
-          },
+          educations: [],
+          experiences: [],
         })
       : setTheUser({
-          ...user,
-          ...{
-            educations: [
-              { institution: "neub", degreeName: "bsc", passYear: "2018" },
-            ],
-            experiences: [
-              {
-                employer: "nevadia",
-                duration: "jan-2018tojan-2019",
-                jobTitle: "soft. developer",
-              },
-            ],
-          },
+          educations: [
+            { institution: "neub", degreeName: "bsc", passYear: "2018" },
+          ],
+          experiences: [
+            {
+              employer: "nevadia",
+              duration: "jan-2018tojan-2019",
+              jobTitle: "soft. developer",
+            },
+          ],
         });
   }
   //
@@ -115,8 +94,8 @@ export default function Page2() {
       </div>
     );
   }
-//   if (user.signInEmail == "" && loading == false) {
-//     //return <Navigate to="/login" replace={true} />;
-//     navigate("/login");
-//   }
+  //   if (user.signInEmail == "" && loading == false) {
+  //     //return <Navigate to="/login" replace={true} />;
+  //     navigate("/login");
+  //   }
 }

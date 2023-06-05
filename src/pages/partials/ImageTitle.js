@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { FcAddImage } from "react-icons/fc";
-import { Image,  Form } from "react-bootstrap";
+import { Image, Form } from "react-bootstrap";
 //
 import { authContext } from "../../context/Provider";
 //

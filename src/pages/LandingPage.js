@@ -70,14 +70,13 @@ export default function LandingPage() {
         </Col>
         <Col
           xs={12}
-          lg={6}
+          lg={7}
           md={8}
-          className="mt-md-0  mt-auto pt-5 mx-auto px-3 rounded-3"
+          className="mt-md-5 mt-4 pt-md-5 pt-sm-2 mx-auto px-3 rounded-3"
         >
           <Pages />
         </Col>
       </Row>
-      <Link to="/resume/page1">Page1</Link>
     </Container>
   );
 }

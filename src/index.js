@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css"; 
+import "./index.css";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 //
 import Provider from "./context/Provider";
@@ -12,6 +12,7 @@ import AboutPage from "./pages/AboutPage";
 import Page1 from "./pages/Page1";
 import Page2 from "./pages/Page2";
 import Page3 from "./pages/Page3";
+import Check from "./pages/Check";
 import ResumePage from "./pages/ResumePage";
 
 //
@@ -21,10 +22,10 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: (
-      <>
+      <div className="h-auto">
         <Header />
         <Outlet />
-      </>
+      </div>
     ),
     errorElement: <ErrorPage />,
     children: [
@@ -34,6 +35,7 @@ const router = createBrowserRouter([
       },
       {
         path: "login",
+        //element: <Check page="LoginPage" />,
         element: <LoginPage />,
       },
       {
@@ -43,17 +45,21 @@ const router = createBrowserRouter([
       {
         path: "resume",
         element: <ResumePage />,
+        //element: <Check page="ResumePage" />,
       },
       {
         path: "resume-page-1",
+        // element: <Check page="Page1" />,
         element: <Page1 />,
       },
       {
         path: "resume-page-2",
+        // element: <Check page="Page2" />,
         element: <Page2 />,
       },
       {
         path: "resume-page-3",
+        // element: <Check page="Page3" />,
         element: <Page3 />,
       },
     ],

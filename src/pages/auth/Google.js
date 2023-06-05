@@ -21,6 +21,7 @@ export default function Googgle() {
           account_name: result.user.displayName,
           account_pic: result.user.photoURL,
         };
+        console.log("google:  " + JSON.stringify(extracted));
         setTheUser(extracted);
         navigate("/resume");
       })

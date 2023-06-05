@@ -1,15 +1,14 @@
 import React from "react";
-
 import { TbLayoutList } from "react-icons/tb";
-import { Badge } from "react-bootstrap";
+import { Badge, Stack } from "react-bootstrap";
 //
 export default function UsedTools() {
   const toolClasses =
     "py-0 badge  bg-success bg-opacity-25 rounded-pill text-dark border-0 border-end border-warning";
   return (
-    <div className="d-flex flex-wrap justify-content-start gap-1 ">
+    <Stack className="d-flex flex-row flex-wrap justify-content-start gap-1 ">
       <Badge className="py-0 badge bg-dark bg-opacity-100  rounded-3 text-warning fw-bold">
-        Tools:
+        Tools Used:
         <TbLayoutList size={12} className="ms-1 text-light" />
       </Badge>
       <Badge className={toolClasses}>Firebase auth & FireStore cloud</Badge>
@@ -20,6 +19,6 @@ export default function UsedTools() {
       <Badge className={toolClasses}>
         Context, Hooks, Component composition
       </Badge>
-    </div>
+    </Stack>
   );
 }

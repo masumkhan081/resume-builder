@@ -1,6 +1,7 @@
 import React, { useEffect, useContext } from "react";
 import { useNavigate, Link, Navigate } from "react-router-dom";
 import { authContext } from "../context/Provider";
+import { AiFillEye } from "react-icons/ai";
 import {
   AiOutlineArrowLeft,
   AiOutlineArrowRight,
@@ -98,6 +99,24 @@ export default function ResumePage() {
         </div>
 
         <div className="tab-content px-3 container" id="nav-tabContent">
+          <Badge className="bg-success bg-opacity-10 text-dark">
+            <AiFillEye size={25} />
+            Still Ongoing On This Part
+          </Badge>
+          <span className="text-start mb-2 d-block  bg-success bg-opacity-10 text-dark">
+            <strong>Version-2 Of This Project:</strong>
+            <a
+              target="_blank"
+              className="ms-2"
+              href="https://v-2-resume-builder.vercel.app"
+            >
+              v-2-resume-builder.vercel.app
+            </a>
+            <Badge className="ms-3 bg-success bg-opacity-25 text-dark">
+              Target Tools:
+            </Badge>
+            Tailwind, Material UI, Next, Formik-Yup, Framer-motion
+          </span>
           <div className="tab-pane fade show active" id="nav-resume-detail">
             <Stack className="  mt-sm-3 mt-1 bg-success bg-opacity-10  flex-col gap-5 justify-content-between shadow-sm  rounded-3">
               <Stack>

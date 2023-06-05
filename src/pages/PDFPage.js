@@ -48,30 +48,6 @@ export default function PDFPage() {
   });
   return (
     <div className="tab-pane fade show px-3" id="nav-resume-pdf">
-      <div className="my-4 shadow-sm">
-        <Badge className="bg-light text-dark py-0 me-2">
-          <AiFillEye size={25} />{" "}
-        </Badge>
-        <span>
-          Still ongoing on this part. Aimed to work with context,
-          firebase-firestore, and react-bootstrap while having an objective.
-        </span>
-
-        <span className="text-start mb-2 d-block fs-6 bg-success bg-opacity-10 text-dark">
-          <strong>Version-2 Of This Project:</strong>
-          <a
-            target="_blank"
-            className="ms-2"
-            href="https://v-2-resume-builder.vercel.app"
-          >
-            v-2-resume-builder.vercel.app
-          </a>
-          <Badge className="ms-2 bg-success bg-opacity-25 text-dark">
-            Target Tools:
-          </Badge>
-          Tailwind, Material UI, Next, Formik-Yup, Framer-motion
-        </span>
-      </div>
       <PDFViewer className="w-100 h-100 vh-100">
         <Document size="A4" style={styles.doc}>
           <Page size="A4" style={styles.page}>

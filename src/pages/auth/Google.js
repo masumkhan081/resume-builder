@@ -23,7 +23,7 @@ export default function Googgle() {
         };
         console.log("google:  " + JSON.stringify(extracted));
         setTheUser(extracted);
-        navigate("/resume");
+        navigate("/resume-page-1");
       })
       .catch((theError) => {
         console.log("err:   " + theError);

@@ -32,6 +32,7 @@ export default function Facebook() {
       })
       .catch((theError) => {
         if (theError.code == "auth/account-exists-with-different-credential") {
+          console.log("theErr:  "+JSON.stringify(theError));
           setTheError(theError.customData._tokenResponse.verifiedProvider[0]);
         }
       });

@@ -34,7 +34,7 @@ export default function LandingPage() {
                 >
                   +
                 </span>
-                GET IT IN PDF
+                GET PDF
               </span>
             </div>
             <Stack className="mt-md-4 mt-2   gap-md-4 gap-2">
